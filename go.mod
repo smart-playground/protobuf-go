@@ -1,4 +1,4 @@
-module github.com/playground/protobuf-go
+module github.com/smart-playground/protobuf-go
 
 go 1.21.3
 
