@@ -19,7 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ShoppingService_Hello_FullMethodName = "/playground.protobuf.shopping.ShoppingService/Hello"
+	ShoppingService_Hello_FullMethodName              = "/playground.protobuf.shopping.ShoppingService/Hello"
+	ShoppingService_AddCatalogItem_FullMethodName     = "/playground.protobuf.shopping.ShoppingService/AddCatalogItem"
+	ShoppingService_UpdateCatalogItem_FullMethodName  = "/playground.protobuf.shopping.ShoppingService/UpdateCatalogItem"
+	ShoppingService_DeleteCatalogItems_FullMethodName = "/playground.protobuf.shopping.ShoppingService/DeleteCatalogItems"
 )
 
 // ShoppingServiceClient is the client API for ShoppingService service.
@@ -27,6 +30,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ShoppingServiceClient interface {
 	Hello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
+	AddCatalogItem(ctx context.Context, in *AddCatalogItemRequest, opts ...grpc.CallOption) (*AddCatalogItemResponse, error)
+	UpdateCatalogItem(ctx context.Context, in *UpdateCatalogItemRequest, opts ...grpc.CallOption) (*UpdateCatalogItemResponse, error)
+	DeleteCatalogItems(ctx context.Context, in *DeleteCatalogItemsRequest, opts ...grpc.CallOption) (*DeleteCatalogItemsResponse, error)
 }
 
 type shoppingServiceClient struct {
@@ -46,11 +52,41 @@ func (c *shoppingServiceClient) Hello(ctx context.Context, in *HelloRequest, opt
 	return out, nil
 }
 
+func (c *shoppingServiceClient) AddCatalogItem(ctx context.Context, in *AddCatalogItemRequest, opts ...grpc.CallOption) (*AddCatalogItemResponse, error) {
+	out := new(AddCatalogItemResponse)
+	err := c.cc.Invoke(ctx, ShoppingService_AddCatalogItem_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shoppingServiceClient) UpdateCatalogItem(ctx context.Context, in *UpdateCatalogItemRequest, opts ...grpc.CallOption) (*UpdateCatalogItemResponse, error) {
+	out := new(UpdateCatalogItemResponse)
+	err := c.cc.Invoke(ctx, ShoppingService_UpdateCatalogItem_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shoppingServiceClient) DeleteCatalogItems(ctx context.Context, in *DeleteCatalogItemsRequest, opts ...grpc.CallOption) (*DeleteCatalogItemsResponse, error) {
+	out := new(DeleteCatalogItemsResponse)
+	err := c.cc.Invoke(ctx, ShoppingService_DeleteCatalogItems_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShoppingServiceServer is the server API for ShoppingService service.
 // All implementations must embed UnimplementedShoppingServiceServer
 // for forward compatibility
 type ShoppingServiceServer interface {
 	Hello(context.Context, *HelloRequest) (*HelloResponse, error)
+	AddCatalogItem(context.Context, *AddCatalogItemRequest) (*AddCatalogItemResponse, error)
+	UpdateCatalogItem(context.Context, *UpdateCatalogItemRequest) (*UpdateCatalogItemResponse, error)
+	DeleteCatalogItems(context.Context, *DeleteCatalogItemsRequest) (*DeleteCatalogItemsResponse, error)
 	mustEmbedUnimplementedShoppingServiceServer()
 }
 
@@ -60,6 +96,15 @@ type UnimplementedShoppingServiceServer struct {
 
 func (UnimplementedShoppingServiceServer) Hello(context.Context, *HelloRequest) (*HelloResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
+}
+func (UnimplementedShoppingServiceServer) AddCatalogItem(context.Context, *AddCatalogItemRequest) (*AddCatalogItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCatalogItem not implemented")
+}
+func (UnimplementedShoppingServiceServer) UpdateCatalogItem(context.Context, *UpdateCatalogItemRequest) (*UpdateCatalogItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCatalogItem not implemented")
+}
+func (UnimplementedShoppingServiceServer) DeleteCatalogItems(context.Context, *DeleteCatalogItemsRequest) (*DeleteCatalogItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalogItems not implemented")
 }
 func (UnimplementedShoppingServiceServer) mustEmbedUnimplementedShoppingServiceServer() {}
 
@@ -92,6 +137,60 @@ func _ShoppingService_Hello_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ShoppingService_AddCatalogItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCatalogItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShoppingServiceServer).AddCatalogItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShoppingService_AddCatalogItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShoppingServiceServer).AddCatalogItem(ctx, req.(*AddCatalogItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ShoppingService_UpdateCatalogItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCatalogItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShoppingServiceServer).UpdateCatalogItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShoppingService_UpdateCatalogItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShoppingServiceServer).UpdateCatalogItem(ctx, req.(*UpdateCatalogItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ShoppingService_DeleteCatalogItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCatalogItemsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShoppingServiceServer).DeleteCatalogItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShoppingService_DeleteCatalogItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShoppingServiceServer).DeleteCatalogItems(ctx, req.(*DeleteCatalogItemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ShoppingService_ServiceDesc is the grpc.ServiceDesc for ShoppingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -102,6 +201,18 @@ var ShoppingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Hello",
 			Handler:    _ShoppingService_Hello_Handler,
+		},
+		{
+			MethodName: "AddCatalogItem",
+			Handler:    _ShoppingService_AddCatalogItem_Handler,
+		},
+		{
+			MethodName: "UpdateCatalogItem",
+			Handler:    _ShoppingService_UpdateCatalogItem_Handler,
+		},
+		{
+			MethodName: "DeleteCatalogItems",
+			Handler:    _ShoppingService_DeleteCatalogItems_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
