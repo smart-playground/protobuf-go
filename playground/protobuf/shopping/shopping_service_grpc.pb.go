@@ -24,6 +24,7 @@ const (
 	ShoppingService_AddCatalogItem_FullMethodName     = "/playground.protobuf.shopping.ShoppingService/AddCatalogItem"
 	ShoppingService_UpdateCatalogItem_FullMethodName  = "/playground.protobuf.shopping.ShoppingService/UpdateCatalogItem"
 	ShoppingService_DeleteCatalogItems_FullMethodName = "/playground.protobuf.shopping.ShoppingService/DeleteCatalogItems"
+	ShoppingService_CountCatalogItems_FullMethodName  = "/playground.protobuf.shopping.ShoppingService/CountCatalogItems"
 )
 
 // ShoppingServiceClient is the client API for ShoppingService service.
@@ -35,6 +36,7 @@ type ShoppingServiceClient interface {
 	AddCatalogItem(ctx context.Context, in *AddCatalogItemRequest, opts ...grpc.CallOption) (*AddCatalogItemResponse, error)
 	UpdateCatalogItem(ctx context.Context, in *UpdateCatalogItemRequest, opts ...grpc.CallOption) (*UpdateCatalogItemResponse, error)
 	DeleteCatalogItems(ctx context.Context, in *DeleteCatalogItemsRequest, opts ...grpc.CallOption) (*DeleteCatalogItemsResponse, error)
+	CountCatalogItems(ctx context.Context, in *CountCatalogItemsRequest, opts ...grpc.CallOption) (*CountCatalogItemsResponse, error)
 }
 
 type shoppingServiceClient struct {
@@ -90,6 +92,15 @@ func (c *shoppingServiceClient) DeleteCatalogItems(ctx context.Context, in *Dele
 	return out, nil
 }
 
+func (c *shoppingServiceClient) CountCatalogItems(ctx context.Context, in *CountCatalogItemsRequest, opts ...grpc.CallOption) (*CountCatalogItemsResponse, error) {
+	out := new(CountCatalogItemsResponse)
+	err := c.cc.Invoke(ctx, ShoppingService_CountCatalogItems_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShoppingServiceServer is the server API for ShoppingService service.
 // All implementations must embed UnimplementedShoppingServiceServer
 // for forward compatibility
@@ -99,6 +110,7 @@ type ShoppingServiceServer interface {
 	AddCatalogItem(context.Context, *AddCatalogItemRequest) (*AddCatalogItemResponse, error)
 	UpdateCatalogItem(context.Context, *UpdateCatalogItemRequest) (*UpdateCatalogItemResponse, error)
 	DeleteCatalogItems(context.Context, *DeleteCatalogItemsRequest) (*DeleteCatalogItemsResponse, error)
+	CountCatalogItems(context.Context, *CountCatalogItemsRequest) (*CountCatalogItemsResponse, error)
 	mustEmbedUnimplementedShoppingServiceServer()
 }
 
@@ -120,6 +132,9 @@ func (UnimplementedShoppingServiceServer) UpdateCatalogItem(context.Context, *Up
 }
 func (UnimplementedShoppingServiceServer) DeleteCatalogItems(context.Context, *DeleteCatalogItemsRequest) (*DeleteCatalogItemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCatalogItems not implemented")
+}
+func (UnimplementedShoppingServiceServer) CountCatalogItems(context.Context, *CountCatalogItemsRequest) (*CountCatalogItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountCatalogItems not implemented")
 }
 func (UnimplementedShoppingServiceServer) mustEmbedUnimplementedShoppingServiceServer() {}
 
@@ -224,6 +239,24 @@ func _ShoppingService_DeleteCatalogItems_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ShoppingService_CountCatalogItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountCatalogItemsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShoppingServiceServer).CountCatalogItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShoppingService_CountCatalogItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShoppingServiceServer).CountCatalogItems(ctx, req.(*CountCatalogItemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ShoppingService_ServiceDesc is the grpc.ServiceDesc for ShoppingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -250,6 +283,10 @@ var ShoppingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCatalogItems",
 			Handler:    _ShoppingService_DeleteCatalogItems_Handler,
+		},
+		{
+			MethodName: "CountCatalogItems",
+			Handler:    _ShoppingService_CountCatalogItems_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
