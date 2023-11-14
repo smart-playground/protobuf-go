@@ -501,6 +501,53 @@ func (*Equality_NotContains) isEquality_SealedValueOptional() {}
 
 func (*Equality_LooseIn) isEquality_SealedValueOptional() {}
 
+type Id struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Equality *Equality `protobuf:"bytes,1,opt,name=equality,proto3" json:"equality,omitempty"`
+}
+
+func (x *Id) Reset() {
+	*x = Id{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Id) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Id) ProtoMessage() {}
+
+func (x *Id) ProtoReflect() protoreflect.Message {
+	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Id.ProtoReflect.Descriptor instead.
+func (*Id) Descriptor() ([]byte, []int) {
+	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Id) GetEquality() *Equality {
+	if x != nil {
+		return x.Equality
+	}
+	return nil
+}
+
 type Name struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -512,7 +559,7 @@ type Name struct {
 func (x *Name) Reset() {
 	*x = Name{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[8]
+		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -525,7 +572,7 @@ func (x *Name) String() string {
 func (*Name) ProtoMessage() {}
 
 func (x *Name) ProtoReflect() protoreflect.Message {
-	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[8]
+	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -538,7 +585,7 @@ func (x *Name) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Name.ProtoReflect.Descriptor instead.
 func (*Name) Descriptor() ([]byte, []int) {
-	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{8}
+	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Name) GetEquality() *Equality {
@@ -559,7 +606,7 @@ type Description struct {
 func (x *Description) Reset() {
 	*x = Description{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[9]
+		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -572,7 +619,7 @@ func (x *Description) String() string {
 func (*Description) ProtoMessage() {}
 
 func (x *Description) ProtoReflect() protoreflect.Message {
-	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[9]
+	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -585,7 +632,7 @@ func (x *Description) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Description.ProtoReflect.Descriptor instead.
 func (*Description) Descriptor() ([]byte, []int) {
-	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{9}
+	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Description) GetEquality() *Equality {
@@ -604,13 +651,14 @@ type FieldFilter struct {
 	//
 	//	*FieldFilter_Name
 	//	*FieldFilter_Description
+	//	*FieldFilter_Id
 	SealedValueOptional isFieldFilter_SealedValueOptional `protobuf_oneof:"sealed_value_optional"`
 }
 
 func (x *FieldFilter) Reset() {
 	*x = FieldFilter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[10]
+		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -623,7 +671,7 @@ func (x *FieldFilter) String() string {
 func (*FieldFilter) ProtoMessage() {}
 
 func (x *FieldFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[10]
+	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -636,7 +684,7 @@ func (x *FieldFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FieldFilter.ProtoReflect.Descriptor instead.
 func (*FieldFilter) Descriptor() ([]byte, []int) {
-	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{10}
+	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{11}
 }
 
 func (m *FieldFilter) GetSealedValueOptional() isFieldFilter_SealedValueOptional {
@@ -660,6 +708,13 @@ func (x *FieldFilter) GetDescription() *Description {
 	return nil
 }
 
+func (x *FieldFilter) GetId() *Id {
+	if x, ok := x.GetSealedValueOptional().(*FieldFilter_Id); ok {
+		return x.Id
+	}
+	return nil
+}
+
 type isFieldFilter_SealedValueOptional interface {
 	isFieldFilter_SealedValueOptional()
 }
@@ -672,9 +727,15 @@ type FieldFilter_Description struct {
 	Description *Description `protobuf:"bytes,2,opt,name=description,proto3,oneof"`
 }
 
+type FieldFilter_Id struct {
+	Id *Id `protobuf:"bytes,3,opt,name=id,proto3,oneof"`
+}
+
 func (*FieldFilter_Name) isFieldFilter_SealedValueOptional() {}
 
 func (*FieldFilter_Description) isFieldFilter_SealedValueOptional() {}
+
+func (*FieldFilter_Id) isFieldFilter_SealedValueOptional() {}
 
 type FieldFilterList struct {
 	state         protoimpl.MessageState
@@ -687,7 +748,7 @@ type FieldFilterList struct {
 func (x *FieldFilterList) Reset() {
 	*x = FieldFilterList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[11]
+		mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -700,7 +761,7 @@ func (x *FieldFilterList) String() string {
 func (*FieldFilterList) ProtoMessage() {}
 
 func (x *FieldFilterList) ProtoReflect() protoreflect.Message {
-	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[11]
+	mi := &file_playground_protobuf_common_filters_filters_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -713,7 +774,7 @@ func (x *FieldFilterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FieldFilterList.ProtoReflect.Descriptor instead.
 func (*FieldFilterList) Descriptor() ([]byte, []int) {
-	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{11}
+	return file_playground_protobuf_common_filters_filters_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *FieldFilterList) GetFilterList() []*FieldFilter {
@@ -784,6 +845,11 @@ var file_playground_protobuf_common_filters_filters_proto_rawDesc = []byte{
 	0x74, 0x65, 0x72, 0x73, 0x2e, 0x4c, 0x6f, 0x6f, 0x73, 0x65, 0x49, 0x6e, 0x48, 0x00, 0x52, 0x07,
 	0x6c, 0x6f, 0x6f, 0x73, 0x65, 0x49, 0x6e, 0x42, 0x17, 0x0a, 0x15, 0x73, 0x65, 0x61, 0x6c, 0x65,
 	0x64, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c,
+	0x22, 0x4e, 0x0a, 0x02, 0x49, 0x64, 0x12, 0x48, 0x0a, 0x08, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x69,
+	0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67,
+	0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x63,
+	0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x73, 0x2e, 0x45, 0x71,
+	0x75, 0x61, 0x6c, 0x69, 0x74, 0x79, 0x52, 0x08, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x69, 0x74, 0x79,
 	0x22, 0x50, 0x0a, 0x04, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x48, 0x0a, 0x08, 0x65, 0x71, 0x75, 0x61,
 	0x6c, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x70, 0x6c, 0x61,
 	0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
@@ -794,7 +860,7 @@ var file_playground_protobuf_common_filters_filters_proto_rawDesc = []byte{
 	0x01, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
 	0x2e, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x73, 0x2e, 0x45, 0x71, 0x75, 0x61, 0x6c, 0x69, 0x74,
-	0x79, 0x52, 0x08, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x69, 0x74, 0x79, 0x22, 0xbb, 0x01, 0x0a, 0x0b,
+	0x79, 0x52, 0x08, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x69, 0x74, 0x79, 0x22, 0xf5, 0x01, 0x0a, 0x0b,
 	0x46, 0x69, 0x65, 0x6c, 0x64, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x3e, 0x0a, 0x04, 0x6e,
 	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x70, 0x6c, 0x61, 0x79,
 	0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
@@ -805,22 +871,26 @@ var file_playground_protobuf_common_filters_filters_proto_rawDesc = []byte{
 	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x66, 0x69,
 	0x6c, 0x74, 0x65, 0x72, 0x73, 0x2e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
 	0x6e, 0x48, 0x00, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x42, 0x17, 0x0a, 0x15, 0x73, 0x65, 0x61, 0x6c, 0x65, 0x64, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x22, 0x63, 0x0a, 0x0f, 0x46, 0x69, 0x65,
-	0x6c, 0x64, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x50, 0x0a, 0x0b,
-	0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x2f, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x66,
-	0x69, 0x6c, 0x74, 0x65, 0x72, 0x73, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x46, 0x69, 0x6c, 0x74,
-	0x65, 0x72, 0x52, 0x0a, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x70,
-	0x0a, 0x22, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x66, 0x69, 0x6c,
-	0x74, 0x65, 0x72, 0x73, 0x5a, 0x4a, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
-	0x2f, 0x73, 0x6d, 0x61, 0x72, 0x74, 0x2d, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e,
-	0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2d, 0x67, 0x6f, 0x2f, 0x70, 0x6c,
-	0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x73,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x38, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x70,
+	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x73, 0x2e, 0x49, 0x64, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x42, 0x17, 0x0a, 0x15, 0x73, 0x65,
+	0x61, 0x6c, 0x65, 0x64, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f,
+	0x6e, 0x61, 0x6c, 0x22, 0x63, 0x0a, 0x0f, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x46, 0x69, 0x6c, 0x74,
+	0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x50, 0x0a, 0x0b, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2f, 0x2e, 0x70, 0x6c,
+	0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x73,
+	0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x0a, 0x66, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x70, 0x0a, 0x22, 0x70, 0x6c, 0x61, 0x79,
+	0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x73, 0x5a, 0x4a,
+	0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x6d, 0x61, 0x72, 0x74,
+	0x2d, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2d, 0x67, 0x6f, 0x2f, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75,
+	0x6e, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x63, 0x6f, 0x6d, 0x6d,
+	0x6f, 0x6e, 0x2f, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -835,7 +905,7 @@ func file_playground_protobuf_common_filters_filters_proto_rawDescGZIP() []byte 
 	return file_playground_protobuf_common_filters_filters_proto_rawDescData
 }
 
-var file_playground_protobuf_common_filters_filters_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_playground_protobuf_common_filters_filters_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_playground_protobuf_common_filters_filters_proto_goTypes = []interface{}{
 	(*Equals)(nil),          // 0: playground.protobuf.common.filters.Equals
 	(*NotEquals)(nil),       // 1: playground.protobuf.common.filters.NotEquals
@@ -845,10 +915,11 @@ var file_playground_protobuf_common_filters_filters_proto_goTypes = []interface{
 	(*Contains)(nil),        // 5: playground.protobuf.common.filters.Contains
 	(*NotContains)(nil),     // 6: playground.protobuf.common.filters.NotContains
 	(*Equality)(nil),        // 7: playground.protobuf.common.filters.Equality
-	(*Name)(nil),            // 8: playground.protobuf.common.filters.Name
-	(*Description)(nil),     // 9: playground.protobuf.common.filters.Description
-	(*FieldFilter)(nil),     // 10: playground.protobuf.common.filters.FieldFilter
-	(*FieldFilterList)(nil), // 11: playground.protobuf.common.filters.FieldFilterList
+	(*Id)(nil),              // 8: playground.protobuf.common.filters.Id
+	(*Name)(nil),            // 9: playground.protobuf.common.filters.Name
+	(*Description)(nil),     // 10: playground.protobuf.common.filters.Description
+	(*FieldFilter)(nil),     // 11: playground.protobuf.common.filters.FieldFilter
+	(*FieldFilterList)(nil), // 12: playground.protobuf.common.filters.FieldFilterList
 }
 var file_playground_protobuf_common_filters_filters_proto_depIdxs = []int32{
 	0,  // 0: playground.protobuf.common.filters.Equality.equals:type_name -> playground.protobuf.common.filters.Equals
@@ -858,16 +929,18 @@ var file_playground_protobuf_common_filters_filters_proto_depIdxs = []int32{
 	5,  // 4: playground.protobuf.common.filters.Equality.contains:type_name -> playground.protobuf.common.filters.Contains
 	6,  // 5: playground.protobuf.common.filters.Equality.not_contains:type_name -> playground.protobuf.common.filters.NotContains
 	3,  // 6: playground.protobuf.common.filters.Equality.loose_in:type_name -> playground.protobuf.common.filters.LooseIn
-	7,  // 7: playground.protobuf.common.filters.Name.equality:type_name -> playground.protobuf.common.filters.Equality
-	7,  // 8: playground.protobuf.common.filters.Description.equality:type_name -> playground.protobuf.common.filters.Equality
-	8,  // 9: playground.protobuf.common.filters.FieldFilter.name:type_name -> playground.protobuf.common.filters.Name
-	9,  // 10: playground.protobuf.common.filters.FieldFilter.description:type_name -> playground.protobuf.common.filters.Description
-	10, // 11: playground.protobuf.common.filters.FieldFilterList.filter_list:type_name -> playground.protobuf.common.filters.FieldFilter
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	7,  // 7: playground.protobuf.common.filters.Id.equality:type_name -> playground.protobuf.common.filters.Equality
+	7,  // 8: playground.protobuf.common.filters.Name.equality:type_name -> playground.protobuf.common.filters.Equality
+	7,  // 9: playground.protobuf.common.filters.Description.equality:type_name -> playground.protobuf.common.filters.Equality
+	9,  // 10: playground.protobuf.common.filters.FieldFilter.name:type_name -> playground.protobuf.common.filters.Name
+	10, // 11: playground.protobuf.common.filters.FieldFilter.description:type_name -> playground.protobuf.common.filters.Description
+	8,  // 12: playground.protobuf.common.filters.FieldFilter.id:type_name -> playground.protobuf.common.filters.Id
+	11, // 13: playground.protobuf.common.filters.FieldFilterList.filter_list:type_name -> playground.protobuf.common.filters.FieldFilter
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_playground_protobuf_common_filters_filters_proto_init() }
@@ -973,7 +1046,7 @@ func file_playground_protobuf_common_filters_filters_proto_init() {
 			}
 		}
 		file_playground_protobuf_common_filters_filters_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Name); i {
+			switch v := v.(*Id); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -985,7 +1058,7 @@ func file_playground_protobuf_common_filters_filters_proto_init() {
 			}
 		}
 		file_playground_protobuf_common_filters_filters_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Description); i {
+			switch v := v.(*Name); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -997,7 +1070,7 @@ func file_playground_protobuf_common_filters_filters_proto_init() {
 			}
 		}
 		file_playground_protobuf_common_filters_filters_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldFilter); i {
+			switch v := v.(*Description); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1009,6 +1082,18 @@ func file_playground_protobuf_common_filters_filters_proto_init() {
 			}
 		}
 		file_playground_protobuf_common_filters_filters_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FieldFilter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_playground_protobuf_common_filters_filters_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FieldFilterList); i {
 			case 0:
 				return &v.state
@@ -1030,9 +1115,10 @@ func file_playground_protobuf_common_filters_filters_proto_init() {
 		(*Equality_NotContains)(nil),
 		(*Equality_LooseIn)(nil),
 	}
-	file_playground_protobuf_common_filters_filters_proto_msgTypes[10].OneofWrappers = []interface{}{
+	file_playground_protobuf_common_filters_filters_proto_msgTypes[11].OneofWrappers = []interface{}{
 		(*FieldFilter_Name)(nil),
 		(*FieldFilter_Description)(nil),
+		(*FieldFilter_Id)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1040,7 +1126,7 @@ func file_playground_protobuf_common_filters_filters_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_playground_protobuf_common_filters_filters_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
