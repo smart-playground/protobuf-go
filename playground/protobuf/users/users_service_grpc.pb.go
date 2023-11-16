@@ -27,7 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UsersServiceClient interface {
-	GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
+	GetUsers(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	UpdateUsers(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 }
 
@@ -39,8 +39,8 @@ func NewUsersServiceClient(cc grpc.ClientConnInterface) UsersServiceClient {
 	return &usersServiceClient{cc}
 }
 
-func (c *usersServiceClient) GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error) {
-	out := new(GetUsersResponse)
+func (c *usersServiceClient) GetUsers(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
 	err := c.cc.Invoke(ctx, UsersService_GetUsers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -61,7 +61,7 @@ func (c *usersServiceClient) UpdateUsers(ctx context.Context, in *UpdateRequest,
 // All implementations must embed UnimplementedUsersServiceServer
 // for forward compatibility
 type UsersServiceServer interface {
-	GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
+	GetUsers(context.Context, *GetRequest) (*GetResponse, error)
 	UpdateUsers(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	mustEmbedUnimplementedUsersServiceServer()
 }
@@ -70,7 +70,7 @@ type UsersServiceServer interface {
 type UnimplementedUsersServiceServer struct {
 }
 
-func (UnimplementedUsersServiceServer) GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error) {
+func (UnimplementedUsersServiceServer) GetUsers(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsers not implemented")
 }
 func (UnimplementedUsersServiceServer) UpdateUsers(context.Context, *UpdateRequest) (*UpdateResponse, error) {
@@ -90,7 +90,7 @@ func RegisterUsersServiceServer(s grpc.ServiceRegistrar, srv UsersServiceServer)
 }
 
 func _UsersService_GetUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUsersRequest)
+	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func _UsersService_GetUsers_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: UsersService_GetUsers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).GetUsers(ctx, req.(*GetUsersRequest))
+		return srv.(UsersServiceServer).GetUsers(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
