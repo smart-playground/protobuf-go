@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CartsService_GetCarts_FullMethodName    = "/playground.protobuf.carts.CartsService/GetCarts"
-	CartsService_AddCart_FullMethodName     = "/playground.protobuf.carts.CartsService/AddCart"
-	CartsService_UpdateCart_FullMethodName  = "/playground.protobuf.carts.CartsService/UpdateCart"
-	CartsService_DeleteCarts_FullMethodName = "/playground.protobuf.carts.CartsService/DeleteCarts"
-	CartsService_CountCarts_FullMethodName  = "/playground.protobuf.carts.CartsService/CountCarts"
-	CartsService_SetItems_FullMethodName    = "/playground.protobuf.carts.CartsService/SetItems"
-	CartsService_DeleteItems_FullMethodName = "/playground.protobuf.carts.CartsService/DeleteItems"
+	CartsService_GetCarts_FullMethodName               = "/playground.protobuf.carts.CartsService/GetCarts"
+	CartsService_AddCart_FullMethodName                = "/playground.protobuf.carts.CartsService/AddCart"
+	CartsService_UpdateCart_FullMethodName             = "/playground.protobuf.carts.CartsService/UpdateCart"
+	CartsService_DeleteCarts_FullMethodName            = "/playground.protobuf.carts.CartsService/DeleteCarts"
+	CartsService_CountCarts_FullMethodName             = "/playground.protobuf.carts.CartsService/CountCarts"
+	CartsService_DeleteItemFromAllCarts_FullMethodName = "/playground.protobuf.carts.CartsService/DeleteItemFromAllCarts"
+	CartsService_SetItems_FullMethodName               = "/playground.protobuf.carts.CartsService/SetItems"
+	CartsService_DeleteItems_FullMethodName            = "/playground.protobuf.carts.CartsService/DeleteItems"
 )
 
 // CartsServiceClient is the client API for CartsService service.
@@ -37,6 +38,7 @@ type CartsServiceClient interface {
 	UpdateCart(ctx context.Context, in *UpdateCartRequest, opts ...grpc.CallOption) (*UpdateCartResponse, error)
 	DeleteCarts(ctx context.Context, in *DeleteCartsRequest, opts ...grpc.CallOption) (*DeleteCartsResponse, error)
 	CountCarts(ctx context.Context, in *CountCartsRequest, opts ...grpc.CallOption) (*CountCartsResponse, error)
+	DeleteItemFromAllCarts(ctx context.Context, in *DeleteItemFromAllCartsRequest, opts ...grpc.CallOption) (*DeleteItemFromAllCartsResponse, error)
 	SetItems(ctx context.Context, in *SetItemsRequest, opts ...grpc.CallOption) (*SetItemsResponse, error)
 	DeleteItems(ctx context.Context, in *DeleteItemsRequest, opts ...grpc.CallOption) (*DeleteItemsResponse, error)
 }
@@ -94,6 +96,15 @@ func (c *cartsServiceClient) CountCarts(ctx context.Context, in *CountCartsReque
 	return out, nil
 }
 
+func (c *cartsServiceClient) DeleteItemFromAllCarts(ctx context.Context, in *DeleteItemFromAllCartsRequest, opts ...grpc.CallOption) (*DeleteItemFromAllCartsResponse, error) {
+	out := new(DeleteItemFromAllCartsResponse)
+	err := c.cc.Invoke(ctx, CartsService_DeleteItemFromAllCarts_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cartsServiceClient) SetItems(ctx context.Context, in *SetItemsRequest, opts ...grpc.CallOption) (*SetItemsResponse, error) {
 	out := new(SetItemsResponse)
 	err := c.cc.Invoke(ctx, CartsService_SetItems_FullMethodName, in, out, opts...)
@@ -121,6 +132,7 @@ type CartsServiceServer interface {
 	UpdateCart(context.Context, *UpdateCartRequest) (*UpdateCartResponse, error)
 	DeleteCarts(context.Context, *DeleteCartsRequest) (*DeleteCartsResponse, error)
 	CountCarts(context.Context, *CountCartsRequest) (*CountCartsResponse, error)
+	DeleteItemFromAllCarts(context.Context, *DeleteItemFromAllCartsRequest) (*DeleteItemFromAllCartsResponse, error)
 	SetItems(context.Context, *SetItemsRequest) (*SetItemsResponse, error)
 	DeleteItems(context.Context, *DeleteItemsRequest) (*DeleteItemsResponse, error)
 	mustEmbedUnimplementedCartsServiceServer()
@@ -144,6 +156,9 @@ func (UnimplementedCartsServiceServer) DeleteCarts(context.Context, *DeleteCarts
 }
 func (UnimplementedCartsServiceServer) CountCarts(context.Context, *CountCartsRequest) (*CountCartsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountCarts not implemented")
+}
+func (UnimplementedCartsServiceServer) DeleteItemFromAllCarts(context.Context, *DeleteItemFromAllCartsRequest) (*DeleteItemFromAllCartsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteItemFromAllCarts not implemented")
 }
 func (UnimplementedCartsServiceServer) SetItems(context.Context, *SetItemsRequest) (*SetItemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetItems not implemented")
@@ -254,6 +269,24 @@ func _CartsService_CountCarts_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CartsService_DeleteItemFromAllCarts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteItemFromAllCartsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CartsServiceServer).DeleteItemFromAllCarts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CartsService_DeleteItemFromAllCarts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CartsServiceServer).DeleteItemFromAllCarts(ctx, req.(*DeleteItemFromAllCartsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CartsService_SetItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetItemsRequest)
 	if err := dec(in); err != nil {
@@ -316,6 +349,10 @@ var CartsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CountCarts",
 			Handler:    _CartsService_CountCarts_Handler,
+		},
+		{
+			MethodName: "DeleteItemFromAllCarts",
+			Handler:    _CartsService_DeleteItemFromAllCarts_Handler,
 		},
 		{
 			MethodName: "SetItems",
